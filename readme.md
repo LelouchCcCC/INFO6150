@@ -42,21 +42,6 @@ The website uses semantic HTML5 elements:
 - Figure/image styled with rounded corners and caption
 
 ---
-
-## File Structure
-
-project-root/
-├── index.html
-├── style.css
-├── README.md
-└── assets/
-├── favicon.ico
-├── p1.jpg
-├── welcome.m4a
-└── robotics.mp4
-
----
-
 ## How to Run
 
 1. Clone the repository:
