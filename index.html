@@ -61,7 +61,100 @@
           </p>
         </article>
 
+        <section id="events">
+          <h2>Workshop & Event Schedule</h2>
+          <table>
+            <caption>
+              Upcoming events this month
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Topic</th>
+                <th scope="col">Level</th>
+                <th scope="col">Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>09/15</td>
+                <td>Arduino + Sensors Intro</td>
+                <td>★ Beginner</td>
+                <td>Shillman Hall</td>
+              </tr>
+              <tr>
+                <td>09/22</td>
+                <td>ROS2 Navigation Basics</td>
+                <td>★★ Intermediate</td>
+                <td>BlackSheep Hall</td>
+              </tr>
+              <tr>
+                <td>09/29</td>
+                <td>Object Tracking with OpenCV</td>
+                <td>★ Beginner</td>
+                <td>Curry Center</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
 
+        <section id="signup">
+          <h2>Join Us</h2>
+          <form class="join-form" action="#" method="post" autocomplete="on">
+            <div class="field">
+              <label for="name">Full Name</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                placeholder="Your name"
+              />
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                placeholder="you@example.com"
+              />
+            </div>
+
+            <div class="field">
+              <label for="password">Set Password</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                minlength="6"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="level">Experience Level (datalist)</label>
+              <input
+                id="level"
+                name="level"
+                list="level-options"
+                placeholder="Choose or type…"
+              />
+              <datalist id="level-options">
+                <option value="Beginner"></option>
+                <option value="Intermediate"></option>
+                <option value="Advanced"></option>
+              </datalist>
+            </div>
+
+            <div class="actions">
+              <button type="submit">Join the Club</button>
+              <button type="reset" class="ghost">Reset</button>
+            </div>
+          </form>
+        </section>
 
         <section id="media">
           <h2>Media</h2>
