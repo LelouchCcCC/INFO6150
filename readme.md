@@ -42,11 +42,12 @@ The website uses semantic HTML5 elements:
 - Figure/image styled with rounded corners and caption
 
 ---
+
 ## How to Run
 
 1. Clone the repository:
    ```bash
-   git clone <your-private-github-repo-url>
-   cd project-root
+   git clone git@github.com:LelouchCcCC/INFO6150.git
+   cd INFO6150
    ```
 2. Open index.html in your browser.
