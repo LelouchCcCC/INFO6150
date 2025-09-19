@@ -1,227 +1,98 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Robotics Club</title>
-    <link rel="icon" href="assets/favicon.ico" />
+    <title>Yuhan Zhang • Portfolio</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="style.css" />
-    <meta
-      name="description"
-      content="University Robotics Club: workshops, competitions, recruiting now, join us!"
-    />
   </head>
-
   <body>
     <header class="site-header">
-      <h1>University Robotics Club</h1>
-      <p class="tagline">Build. Code. Compete. — Join us now!</p>
+      <div class="container header-bar">
+        <a class="logo" href="#home" aria-label="Home">Yuhan&nbsp;Zhang</a>
+        <nav aria-label="Primary">
+          <ul class="nav-list">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
 
-      <nav aria-label="Main navigation">
-        <ul class="nav">
-          <li><a href="#about">About</a></li>
-          <li><a href="#events">Schedule</a></li>
-          <li><a href="#signup">Join Us</a></li>
-          <li><a href="#media">Media</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+      <div class="container hero">
+        <article class="hero-copy">
+          <h1>Software Engineer • Cloud-native • Full-stack</h1>
+          <p>Building scalable systems on AWS & React. I enjoy bringing ideas to life with clean code and thoughtful UX.</p>
+        </article>
+        <aside class="hero-aside" aria-label="Quick facts">
+          <ul>
+            <li>Top 5% LeetCode Weekly</li>
+            <li>AWS Solutions Architect Certified</li>
+            <li>Boston, MA</li>
+          </ul>
+        </aside>
+      </div>
     </header>
 
-    <main class="layout">
-      <!-- Main content -->
-      <section id="about" class="content">
-        <article>
-          <h2>About Us</h2>
-          <p>
-            The Robotics Club welcomes makers of all levels. We run weekly
-            hands-on workshops on embedded systems, computer vision, ROS, and
-            mechanical design. New to robotics? Perfect—our mentors will help
-            you get from zero to building your first bot in weeks.
-          </p>
-
-          <figure class="hero-figure">
-            <img
-              src="assets/p1.jpg"
-              alt="Team members testing a small autonomous robot on campus"
-              loading="lazy"
-            />
-            <figcaption>
-              New-member training: line-following bot challenge
-            </figcaption>
-          </figure>
-
-          <p>
-            Curious about our lab space and routes to the makerspace? Check our
-            campus map
-            <a href="https://www.google.com/maps" target="_blank" rel="noopener"
-              >here</a
-            >.
-          </p>
+    <main id="home">
+      <!-- About -->
+      <section id="about" class="section container">
+        <header class="section-header">
+          <h2>About Me</h2>
+          <p>Hi! I’m Yuhan — a full-stack developer focused on reliable cloud services and delightful front-ends.</p>
+        </header>
+        <article class="about-article">
+          <p>I’ve built e-commerce, streaming dashboards, and high-concurrency systems using React, Spring Boot, PostgreSQL, Redis, and AWS serverless.</p>
         </article>
-
-        <section id="events">
-          <h2>Workshop & Event Schedule</h2>
-          <table>
-            <caption>
-              Upcoming events this month
-            </caption>
-            <thead>
-              <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Topic</th>
-                <th scope="col">Level</th>
-                <th scope="col">Location</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>09/15</td>
-                <td>Arduino + Sensors Intro</td>
-                <td>★ Beginner</td>
-                <td>Shillman Hall</td>
-              </tr>
-              <tr>
-                <td>09/22</td>
-                <td>ROS2 Navigation Basics</td>
-                <td>★★ Intermediate</td>
-                <td>BlackSheep Hall</td>
-              </tr>
-              <tr>
-                <td>09/29</td>
-                <td>Object Tracking with OpenCV</td>
-                <td>★ Beginner</td>
-                <td>Curry Center</td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-
-        <section id="signup">
-          <h2>Join Us</h2>
-          <form class="join-form" action="#" method="post" autocomplete="on">
-            <div class="field">
-              <label for="name">Full Name</label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                placeholder="Your name"
-              />
-            </div>
-
-            <div class="field">
-              <label for="email">Email</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                placeholder="you@example.com"
-              />
-            </div>
-
-            <div class="field">
-              <label for="password">Set Password</label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                minlength="6"
-                required
-              />
-            </div>
-
-            <div class="field">
-              <label for="level">Experience Level (datalist)</label>
-              <input
-                id="level"
-                name="level"
-                list="level-options"
-                placeholder="Choose or type…"
-              />
-              <datalist id="level-options">
-                <option value="Beginner"></option>
-                <option value="Intermediate"></option>
-                <option value="Advanced"></option>
-              </datalist>
-            </div>
-
-            <div class="actions">
-              <button type="submit">Join the Club</button>
-              <button type="reset" class="ghost">Reset</button>
-            </div>
-          </form>
-        </section>
-
-        <section id="media">
-          <h2>Media</h2>
-          <p>Here is the club officer's welcome words to all the new members!</p>
-          <audio
-            controls
-            preload="none"
-            aria-label="Safety and lab rules quick audio"
-          >
-            <source src="assets/welcome.m4a" type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
-
-          <video
-            controls
-            preload="metadata"
-            width="640"
-            aria-label="Robotics highlight reel"
-          >
-            <source src="assets/robotics.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </section>
-
-        <section id="faq">
-          <h2>FAQ</h2>
-
-          <details>
-            <summary>Do I need prior experience?</summary>
-            <p>
-              No. We love beginners—most workshops include starter kits and
-              step-by-step guides.
-            </p>
-          </details>
-
-          <details>
-            <summary>Are tools provided?</summary>
-            <p>
-              Yes. Soldering stations, microcontrollers, and common sensors are
-              available in the lab.
-            </p>
-          </details>
-        </section>
+        <aside class="about-aside">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#gallery">Projects Gallery</a></li>
+            <li><a href="#testimonials">What Clients Say</a></li>
+            <li><a href="#contact">Get in Touch</a></li>
+          </ul>
+        </aside>
       </section>
 
-      <!-- Sidebar -->
-      <aside class="sidebar" aria-label="Sidebar">
-        <h3>Why Join Now?</h3>
-        <ul>
-          <li>Recruiting this month—project teams forming</li>
-          <li>Hardware kits for first 50 new members</li>
-          <li>Mentor hours twice a week</li>
-        </ul>
 
-        <h3>Quick Actions</h3>
-        <p><a href="#signup" class="cta-link">Join us now →</a></p>
-      </aside>
+      <!-- Contact -->
+      <section id="contact" class="section container">
+        <header class="section-header">
+          <h2>Contact</h2>
+          <p>Send me a message — I’ll reply soon.</p>
+        </header>
+        <form class="contact-form" action="#" method="post">
+          <div class="form-row">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" required />
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required />
+          </div>
+          <div class="form-row">
+            <label for="msg">Message</label>
+            <textarea id="msg" name="message" rows="5"></textarea>
+          </div>
+          <button class="btn" type="submit">Send Message</button>
+        </form>
+      </section>
     </main>
 
-    <footer id="contact" class="site-footer">
-      <p>© 2025 Northeastern INFO6150</p>
-      <p>
-        Contact us:
-        <a href="mailto:zhang.yuhan8@northeastern.edu"
-          >zhang.yuhan8@northeastern.edu</a
-        >
-      </p>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <small>© <span id="year"></span> Yuhan Zhang. All rights reserved.</small>
+        <ul class="social">
+          <li><a href="https://github.com/LelouchCcCC">GitHub</a></li>
+        </ul>
+      </div>
     </footer>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>
