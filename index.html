@@ -11,8 +11,16 @@
     <header class="site-header">
       <div class="container header-bar">
         <a class="logo" href="#home" aria-label="Home">Yuhan&nbsp;Zhang</a>
+
+        <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-hidden="true" />
+        <label for="nav-toggle" class="nav-toggle-btn" aria-label="Toggle navigation" aria-controls="primary-nav">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </label>
+
         <nav aria-label="Primary">
-          <ul class="nav-list">
+          <ul id="primary-nav" class="nav-list">
             <li><a href="#about">About</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#gallery">Gallery</a></li>
@@ -21,42 +29,112 @@
           </ul>
         </nav>
       </div>
-
-      <div class="container hero">
-        <article class="hero-copy">
-          <h1>Software Engineer • Cloud-native • Full-stack</h1>
-          <p>Building scalable systems on AWS & React. I enjoy bringing ideas to life with clean code and thoughtful UX.</p>
-        </article>
-        <aside class="hero-aside" aria-label="Quick facts">
-          <ul>
-            <li>Top 5% LeetCode Weekly</li>
-            <li>AWS Solutions Architect Certified</li>
-            <li>Boston, MA</li>
-          </ul>
-        </aside>
-      </div>
     </header>
 
     <main id="home">
-      <!-- About -->
       <section id="about" class="section container">
         <header class="section-header">
           <h2>About Me</h2>
           <p>Hi! I’m Yuhan — a full-stack developer focused on reliable cloud services and delightful front-ends.</p>
         </header>
-        <article class="about-article">
-          <p>I’ve built e-commerce, streaming dashboards, and high-concurrency systems using React, Spring Boot, PostgreSQL, Redis, and AWS serverless.</p>
-        </article>
-        <aside class="about-aside">
-          <h3>Quick Links</h3>
-          <ul>
-            <li><a href="#gallery">Projects Gallery</a></li>
-            <li><a href="#testimonials">What Clients Say</a></li>
-            <li><a href="#contact">Get in Touch</a></li>
-          </ul>
-        </aside>
+
+        <div class="about-grid">
+          <article class="about-main">
+            <p>
+              I’ve built e-commerce, streaming dashboards, and high-concurrency systems using
+              React, Spring Boot, PostgreSQL, Redis, and AWS serverless. I care about clean APIs,
+              observability, and performance-driven UX.
+            </p>
+          </article>
+
+          <aside class="about-aside" aria-label="Quick facts">
+            <h3 style="margin-top:0;">Quick Facts</h3>
+            <ul>
+              <li><strong>Location:</strong> Boston, MA</li>
+              <li><strong>Focus:</strong> Cloud-native & Full-stack</li>
+              <li><strong>Cert:</strong> AWS Solutions Architect</li>
+              <li><strong>LeetCode:</strong> Top 5% Weekly</li>
+              <li><strong>GitHub:</strong> <a href="https://github.com/LelouchCcCC" target="_blank" rel="noopener">LelouchCcCC</a></li>
+            </ul>
+          </aside>
+        </div>
       </section>
 
+      <!-- Experience -->
+      <section id="experience" class="section container">
+        <header class="section-header">
+          <h2>Experience & Skills</h2>
+          <p>Selected skills and tools I use day-to-day.</p>
+        </header>
+        <div class="table-wrap">
+          <table class="skills">
+            <caption>Core Skills</caption>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Tools</th>
+                <th>Level</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Frontend</td>
+                <td>React, TypeScript, Vite, MUI</td>
+                <td data-level="Advanced">Advanced</td>
+              </tr>
+              <tr>
+                <td>Backend</td>
+                <td>Java, Spring Boot, Python</td>
+                <td data-level="Advanced">Advanced</td>
+              </tr>
+              <tr>
+                <td>Cloud</td>
+                <td>AWS (Lambda, S3, API Gateway), GCP</td>
+                <td data-level="Proficient">Proficient</td>
+              </tr>
+              <tr>
+                <td>Data</td>
+                <td>PostgreSQL, MySQL, Redis, Kafka</td>
+                <td data-level="Proficient">Proficient</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Gallery -->
+      <section id="gallery" class="section container">
+        <header class="section-header">
+          <h2>Project Gallery</h2>
+        </header>
+        <div class="gallery">
+          <figure class="card">
+            <img src="images/payment.jpeg" alt="Screenshot of Online Store - Skip the Line" loading="lazy" />
+            <figcaption>Online Store — Skip the Line</figcaption>
+          </figure>
+          <figure class="card">
+            <img src="images/inventory.jpeg" alt="Screenshot of Market Supervision Dashboard" loading="lazy" />
+            <figcaption>Market Supervision Dashboard</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section id="testimonials" class="section container">
+        <header class="section-header">
+          <h2>Testimonials</h2>
+        </header>
+        <div class="testimonials">
+          <article class="t-card">
+            <p>“Yuhan did a great job in his internship at RSM.”</p>
+            <footer>— Product Manager, RSM</footer>
+          </article>
+          <article class="t-card">
+            <p>“Implemented AWS serverless with clean CI/CD. Rock solid.”</p>
+            <footer>— Tech Lead, Swapt</footer>
+          </article>
+        </div>
+      </section>
 
       <!-- Contact -->
       <section id="contact" class="section container">
@@ -84,15 +162,11 @@
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <small>© <span id="year"></span> Yuhan Zhang. All rights reserved.</small>
+        <small>© Yuhan Zhang. All rights reserved.</small>
         <ul class="social">
           <li><a href="https://github.com/LelouchCcCC">GitHub</a></li>
         </ul>
       </div>
     </footer>
-
-    <script>
-      document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
   </body>
 </html>
