@@ -1,4 +1,4 @@
-# Robotics Club Website
+# My Website
 
 This is my INFO6150 Assignment 2
 
