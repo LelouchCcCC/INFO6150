@@ -1,15 +1,15 @@
 table {
-  width: 80%;
+  width: 95%;
   border-collapse: collapse;
   margin: 20px 0;
 }
 th, td {
-  border: 1px solid #ddd;
+  border: 1px solid #228B22;
   padding: 8px;
   text-align: center;
 }
 th {
-  background-color: #f2f2f2;
+  background-color: #9acd32;
 }
 .disabled {
   background-color: gray;
@@ -26,4 +26,33 @@ th {
 }
 .arrow {
   cursor: pointer;
+  width: 20px;
+}
+.details {
+  display: none;
+  background-color: #f9fff9;
+}
+.details td {
+  padding: 10px;
+  text-align: left;
+}
+
+
+/* Modal styling */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }

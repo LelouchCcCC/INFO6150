@@ -7,26 +7,40 @@
 </head>
 <body>
 
-  <h2 id="studentInfo">Your Full Name - NUID</h2>
+  <h2 id="studentInfo">Yuhan Zhang - 002846159</h2>
 
   <button id="addStudentBtn">Add New Student</button>
   <button id="submitBtn" class="disabled" disabled>Submit</button>
 
-  <table id="studentTable">
-    <thead>
-      <tr>
-        <th>Expand</th>
-        <th>Student</th>
-        <th>Teacher</th>
-        <th>Select</th>
-        <th>Delete</th>
-        <th>Edit</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Dynamic rows will be added here -->
-    </tbody>
-  </table>
+<table id="studentTable">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Student</th>
+      <th>Advisor</th>
+      <th>Award Status</th>
+      <th>Semester</th>
+      <th>Type</th>
+      <th>Budget #</th>
+      <th>Percentage</th>
+      <th>Delete</th>
+      <th>Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Dynamic rows will be added here -->
+  </tbody>
+</table>
+
+  <!-- Modal overlay for Edit -->
+  <div id="modal" class="modal-overlay" style="display:none;">
+    <div class="modal">
+      <h3 id="modalTitle"></h3>
+      <textarea id="editText" rows="5" cols="40"></textarea><br>
+      <button id="okBtn">OK</button>
+      <button id="cancelBtn">Cancel</button>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
