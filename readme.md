@@ -1,53 +1,61 @@
-# Robotics Club Website
+# 📝 Feedback Form with AI Assistant
 
-This is my INFO6150 Assignment 1
-
----
-
-## Semantic Structure
-
-The website uses semantic HTML5 elements:
-
-- `<header>` with club name and navigation
-- `<nav>` for main menu links
-- `<main>` wrapping the page layout
-- `<section>` for About, Events, Join Us, Media, FAQ
-- `<article>` in the About section
-- `<aside>` for sidebar (recruiting and quick actions)
-- `<footer>` for contact info
+This is my **INFO6150 Assignment 4** project.  
+It implements an interactive feedback form with **real-time validation** and a built-in **AI Assistant** chat window.
 
 ---
 
-## Required Elements Implemented
+## ✅ Required Elements Implemented
 
-- **Favicon**: `link rel="icon"` points to `assets/favicon.ico`
-- **Table**: Workshop & Event schedule
-- **Form**: Join Us form
-  - Inputs: `text`, `email`, `password`
-  - `datalist` for experience level
-- **Image**: `<figure>` with `<figcaption>` (`assets/p1.jpg`)
-- **Hyperlinks**: Internal anchors + external link to Google Maps
-- **Buttons**: Submit + Reset
-- **Audio**: `welcome.m4a` (club officer welcome message)
-- **Video**: `robotics.mp4` (highlight reel)
-- **Details & Summary**: FAQ section
-- **Contact Info**: `mailto:` links in footer
+- **Form Validation**:
+  - Real-time validation for all required fields
+  - Error messages are **pre-written in HTML** and toggled via JavaScript
+  - Disabled “Submit” button until all validations pass
+- **Title (Radio buttons)**: Miss / Mr. / Mrs. — required
+- **First & Last Name**: min 2, max 30 chars, no special characters
+- **Email**: must be a valid `@northeastern.edu` email
+- **Phone Number**: masked input `(XXX) XXX-XXXX`
+- **Zip Code**: exactly 5 digits
+- **“How did you hear”**: checkbox group — at least one required
+- **Drinks Dropdown**: required, dynamically displays an extra checkbox when a drink is selected
+- **Comments Textarea**: required
+- **Street Address 2**: optional, includes a live character counter
 
----
-
-## Styling
-
-- Uses **external CSS only** (`style.css`)
-- Light theme colors with modern layout
-- Figure/image styled with rounded corners and caption
+- **Results Table**:
+  - Submitting the form appends the data as a new row in a results table displayed below the form.
 
 ---
 
-## How to Run
+## 🤖 AI Assistant Feature
 
-1. Clone the repository:
-   ```bash
-   git clone git@github.com:LelouchCcCC/INFO6150.git
-   cd INFO6150
-   ```
-2. Open index.html in your browser.
+- **AI Assistant Button**
+
+  - Located at the **top-right corner** of the page
+  - Clicking it opens a **fixed chat window** in the bottom-right
+
+- **Chat Window**
+
+  - Displays conversation history
+  - Includes:
+    - Message display area
+    - Text input box
+    - Send button (or press Enter)
+
+- **Predefined FAQs**
+
+  - Email format requirement
+  - Phone number format
+  - Zip code requirement
+  - Required fields explanation
+  - Optional address info
+
+- If the question doesn’t match FAQs, the bot responds with a fallback message.
+
+---
+
+## 🎨 Styling
+
+- All styling is in **`style.css`** (external CSS only)
+- Clean and modern light theme
+- `.error-msg` spans are **hidden by default** and toggled by JS validation
+- AI Assistant uses simple box shadow, rounded corners, and fixed positioning
