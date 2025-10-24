@@ -1,0 +1,132 @@
+/* --- Base and Reset --- */
+:root {
+    --primary-color: #004D40; /* Northeastern green */
+    --secondary-color: #FFC107;
+    --error-color: #D32F2F;
+    --success-color: #388E3C;
+    --bg-color: #f4f4f9;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Layout (Flexbox) --- */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    transition: all 0.3s ease;
+}
+
+/* --- Form and Inputs --- */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+.result-display {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+}
+
+/* --- Validation and Error Styles --- */
+.error-message {
+    color: var(--error-color);
+    font-size: 0.85em;
+    margin-top: 5px;
+    min-height: 20px; /* To prevent layout shift */
+}
+
+.is-invalid {
+    border-color: var(--error-color) !important;
+}
+
+.success-message {
+    background-color: var(--success-color);
+    color: white;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    text-align: center;
+    display: none; /* Initial hidden state */
+}
+
+/* --- Buttons --- */
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    width: 100%;
+}
+
+.btn-primary:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* --- Calculator Specific --- */
+.calculator-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-op {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+.btn-op:hover:not(:disabled) {
+    background-color: #ffda6a;
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+    .card {
+        padding: 20px;
+    }
+    .calculator-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

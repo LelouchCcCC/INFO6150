@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator App</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="card" id="calculator-card">
+            <header class="header">
+                <h3 id="welcome-message">Welcome, User!</h3>
+                <button id="logout-btn" class="btn-op">Logout</button>
+                <hr>
+            </header>
+
+            <h2>Basic Calculator</h2>
+
+            <div class="form-group">
+                <label for="num1">Number 1</label>
+                <input type="text" id="num1" placeholder="Enter first number">
+                <div id="num1-error" class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="num2">Number 2</label>
+                <input type="text" id="num2" placeholder="Enter second number">
+                <div id="num2-error" class="error-message"></div>
+            </div>
+
+            <div class="calculator-grid">
+                <button class="btn-op" data-operation="add">+</button>
+                <button class="btn-op" data-operation="subtract">-</button>
+                <button class="btn-op" data-operation="multiply">×</button>
+                <button class="btn-op" data-operation="divide">÷</button>
+            </div>
+
+            <div class="form-group" style="margin-top: 20px;">
+                <label for="result">Result</label>
+                <input type="text" id="result" class="result-display" readonly disabled placeholder="0">
+            </div>
+        </div>
+    </div>
+    <script src="js/calculator.js"></script>
+</body>
+</html>
