@@ -1,0 +1,243 @@
+/* --- Base and Reset --- */
+:root {
+  --primary-color: #004d40; /* Northeastern green */
+  --secondary-color: #ffc107;
+  --error-color: #d32f2f;
+  --success-color: #388e3c;
+  --bg-color: #f4f4f9;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Layout (Flexbox) --- */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  transition: all 0.3s ease;
+}
+
+/* --- Form and Inputs --- */
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+.result-display {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border-color: var(--secondary-color);
+  outline: none;
+}
+
+/* --- Validation and Error Styles --- */
+.error-message {
+  color: var(--error-color);
+  font-size: 0.85em;
+  margin-top: 5px;
+  min-height: 20px; /* To prevent layout shift */
+}
+
+.is-invalid {
+  border-color: var(--error-color) !important;
+}
+
+.success-message {
+  background-color: var(--success-color);
+  color: white;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  text-align: center;
+  display: none; /* Initial hidden state */
+}
+
+/* --- Buttons --- */
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  width: 100%;
+}
+
+.btn-primary:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* --- Calculator Specific --- */
+.calculator-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-op {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+.btn-op:hover:not(:disabled) {
+  background-color: #ffda6a;
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+  .card {
+    padding: 20px;
+  }
+  .calculator-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.container-b {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  max-width: 900px;
+  margin: 50px auto;
+}
+
+.stopwatch-card,
+.history-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.timer-display {
+  font-size: 72px;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-align: center;
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #e8f5e9;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+.control-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn-control {
+  padding: 12px 15px;
+  flex-grow: 1;
+  max-width: 120px;
+  font-weight: 600;
+}
+
+.btn-start {
+  background-color: var(--success-color);
+  color: white;
+}
+.btn-pause {
+  background-color: #ff9800;
+  color: white;
+}
+.btn-stop {
+  background-color: var(--error-color);
+  color: white;
+}
+.btn-reset {
+  background-color: #b0bec5;
+  color: #333;
+}
+
+.btn-control:disabled,
+input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.session-history-list {
+  margin-top: 15px;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+
+.history-item {
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-left: 5px solid var(--primary-color);
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.history-item p {
+  margin: 0;
+}
+.history-item strong {
+  color: var(--primary-color);
+}
+
+@media (max-width: 600px) {
+  .control-buttons {
+    flex-direction: column;
+  }
+  .btn-control {
+    max-width: none;
+  }
+  .timer-display {
+    font-size: 48px;
+  }
+}

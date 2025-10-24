@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Stopwatch</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-b">
+      <div class="stopwatch-card">
+        <h1>⏱️ Event Stopwatch</h1>
+
+        <div id="timer-display" class="timer-display">00:00:00</div>
+
+        <div class="event-details-section">
+          <h3>Event Details</h3>
+
+          <div class="form-group">
+            <label for="event-date">Date</label>
+            <input type="date" id="event-date" />
+            <div id="event-date-error" class="error-message"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="event-name">Event Name</label>
+            <input
+              type="text"
+              id="event-name"
+              placeholder="What are you timing?"
+            />
+            <div id="event-name-error" class="error-message"></div>
+          </div>
+        </div>
+
+        <div class="control-buttons">
+          <button id="start-btn" class="btn-control btn-start">Start</button>
+          <button id="pause-resume-btn" class="btn-control btn-pause" disabled>
+            Pause
+          </button>
+          <button id="stop-save-btn" class="btn-control btn-stop" disabled>
+            Stop & Save
+          </button>
+          <button id="reset-btn" class="btn-control btn-reset">Reset</button>
+        </div>
+      </div>
+
+      <div class="history-card">
+        <h2>📜 Session History</h2>
+
+        <div class="stats">
+          <p>Total Sessions: <span id="total-sessions">0</span></p>
+          <p>Total Time: <span id="total-time">00:00:00</span></p>
+        </div>
+
+        <div class="form-group">
+          <label for="filter-date">Filter by Date</label>
+          <input type="date" id="filter-date" placeholder="Filter by date" />
+        </div>
+
+        <div id="session-history-list" class="session-history-list">
+          <p id="no-sessions-msg" class="text-center">
+            No sessions recorded yet
+          </p>
+        </div>
+      </div>
+    </div>
+    <script src="js/stopwatch.js"></script>
+  </body>
+</html>
