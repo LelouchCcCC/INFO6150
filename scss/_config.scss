@@ -9,15 +9,12 @@ $font-stack: 'Arial', sans-serif;
 $spacer: 1rem;
 $breakpoint-mobile: 768px;
 
-// CSS Custom Properties (3. Custom Properties Requirement)
 :root {
-    // SASS variables are interpolated into CSS Custom Properties
     --primary-color: #{$primary-color};
     --border-color: #{$secondary-color};
     --header-font: #{$font-stack};
 }
 
-// Mixins (6. Mixins Requirement)
 @mixin flex-center {
     display: flex;
     justify-content: center;
@@ -30,7 +27,6 @@ $breakpoint-mobile: 768px;
     }
 }
 
-// Functions (7. Functions Requirement)
 @function calculate-padding($multiplier) {
     @return $spacer * $multiplier;
 }

@@ -1,11 +1,9 @@
 // scss/style.scss
-// Importing all partials (Extra Feature: @import)
 @import 'config';
 @import 'utilities';
 @import 'buttons';
 @import 'mobile';
 
-// Base Styles
 * {
     box-sizing: border-box;
     margin: 0;
@@ -13,18 +11,17 @@
 }
 
 body {
-    font-family: var(--header-font); // Using CSS Custom Property
-    background-color: $light-color; // Using SASS Variable
+    font-family: var(--header-font);
+    background-color: $light-color;
     line-height: 1.6;
 }
 
-// Navigation (Flexbox Layout & Nesting)
 #main-nav {
     display: flex;
     justify-content: space-between;
     padding: calculate-padding(1.5);
 
-    ul { // Nesting
+    ul {
         list-style: none;
         display: flex;
 

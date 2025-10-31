@@ -1,9 +1,8 @@
 // scss/_buttons.scss
 @import 'config';
 
-// Using @each loop and Interpolation (4. Interpolation Requirement & Extra Feature: @each)
 @each $key, $value in (primary: $primary-color, secondary: $secondary-color) {
-    .btn-#{$key} { // Interpolation: Creates .btn-primary and .btn-secondary
+    .btn-#{$key} { 
         background: $value;
         color: $light-color;
         padding: calculate-padding(0.7) calculate-padding(1.5);
@@ -13,7 +12,7 @@
         display: inline-block;
         transition: background 0.3s ease;
 
-        &:hover { // Nesting (2. Nesting Requirement)
+        &:hover { 
             background: darken($value, 10%);
         }
     }
