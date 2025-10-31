@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 7 - Project Features</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav id="main-nav">
+        <h1>My Project</h1>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="page2.html">Features</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="flex-group" style="padding: 4rem 2rem;">
+        <div class="header-content text-center">
+            <h1>SASS & Layout Breakdown</h1>
+            <p>This page highlights the implementation of key SASS features and responsive grid layouts.</p>
+        </div>
+    </header>
+
+    <section id="features-content" class="container grid-main-sidebar" 
+             style="padding: 40px 0;">
+        
+        <main>
+            <h2>SCSS Features in Detail</h2>
+            
+            <div class="grid-4-col" style="margin-top: 20px;">
+                <div class="card" style="border: 1px solid var(--border-color); padding: 15px; text-align: center;">
+                    <h3>Interpolation</h3>
+                    <p>Dynamic Selector Naming</p>
+                </div>
+                <div class="card" style="border: 1px solid var(--border-color); padding: 15px; text-align: center;">
+                    <h3>Custom Props</h3>
+                    <p>Used `var(--border-color)`</p>
+                </div>
+                <div class="card" style="border: 1px solid var(--border-color); padding: 15px; text-align: center;">
+                    <h3>Nesting</h3>
+                    <p>Cleaned up CSS structure</p>
+                </div>
+                <div class="card" style="border: 1px solid var(--border-color); padding: 15px; text-align: center;">
+                    <h3>Placeholders</h3>
+                    <p>Reused `.alert` styles</p>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 40px;">Submission Notes</h2>
+            <p>Ensure your project folder contains the `images` directory, all `scss` partials, the compiled `css/style.css`, and both HTML files before creating the ZIP file.</p>
+            <div class="alert-error" style="margin-top: 1rem;">Warning: Don't forget to set your GitHub repository to **private**!</div>
+        </main>
+
+        <aside>
+            <div class="card" style="border: 1px solid var(--border-color); padding: 20px;">
+                <h3>Submission Checklist</h3>
+                <ul>
+                    <li>Private GitHub Repo</li>
+                    <li>ZIP file on Canvas</li>
+                    <li>**`readme.md`** included</li>
+                    <li>2 Grid layouts</li>
+                    <li>2 Flexbox layouts</li>
+                    <li>All SASS features</li>
+                </ul>
+                <a href="index.html" class="btn-primary" style="margin-top: 15px; display: block; text-align: center;">Go Home</a>
+            </div>
+        </aside>
+
+    </section>
+    
+    <footer class="flex-group" style="padding: 20px; background: #343a40; color: #f8f9fa;">
+        <p>&copy; 2025 All Rights Reserved.</p>
+        <p>Powered by SASS/SCSS</p>
+    </footer>
+</body>
+</html>

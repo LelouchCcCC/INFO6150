@@ -1,0 +1,15 @@
+// scss/_mobile.scss
+@import 'config';
+
+@include mobile { // Using Mixin (6. Mixins Requirement)
+    .header-content {
+        h1 {
+            font-size: 2rem;
+        }
+    }
+
+    // Ensures index.html's 2-col grid stacks on mobile
+    .grid-2-col, .grid-3-col, .grid-4-col, .grid-main-sidebar {
+        grid-template-columns: 1fr;
+    }
+}

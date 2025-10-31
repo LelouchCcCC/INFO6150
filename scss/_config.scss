@@ -1,0 +1,36 @@
+// scss/_config.scss
+
+// SASS Variables (1. Variables Requirement)
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$dark-color: #343a40;
+$light-color: #f8f9fa;
+$font-stack: 'Arial', sans-serif;
+$spacer: 1rem;
+$breakpoint-mobile: 768px;
+
+// CSS Custom Properties (3. Custom Properties Requirement)
+:root {
+    // SASS variables are interpolated into CSS Custom Properties
+    --primary-color: #{$primary-color};
+    --border-color: #{$secondary-color};
+    --header-font: #{$font-stack};
+}
+
+// Mixins (6. Mixins Requirement)
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin mobile {
+    @media (max-width: #{$breakpoint-mobile}) {
+        @content;
+    }
+}
+
+// Functions (7. Functions Requirement)
+@function calculate-padding($multiplier) {
+    @return $spacer * $multiplier;
+}

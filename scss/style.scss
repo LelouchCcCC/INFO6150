@@ -1,0 +1,76 @@
+// scss/style.scss
+// Importing all partials (Extra Feature: @import)
+@import 'config';
+@import 'utilities';
+@import 'buttons';
+@import 'mobile';
+
+// Base Styles
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--header-font); // Using CSS Custom Property
+    background-color: $light-color; // Using SASS Variable
+    line-height: 1.6;
+}
+
+// Navigation (Flexbox Layout & Nesting)
+#main-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: calculate-padding(1.5);
+
+    ul { // Nesting
+        list-style: none;
+        display: flex;
+
+        li {
+            margin-left: $spacer * 1.5;
+
+            a {
+                color: $dark-color;
+
+                &:hover {
+                    color: $primary-color;
+                }
+            }
+        }
+    }
+}
+
+// Layout Classes
+.grid-2-col { // Grid Layout 1 (index.html)
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: calculate-padding(2);
+    padding: calculate-padding(4);
+}
+
+.grid-3-col { // Grid Layout 2 (index.html, services)
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: calculate-padding(2);
+}
+
+.grid-main-sidebar { // Grid Layout 3 (page2.html)
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: calculate-padding(2);
+}
+
+.grid-4-col { // Grid Layout 4 (page2.html, feature cards)
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: calculate-padding(1.5);
+}
+
+.flex-group { // Flexbox Layout
+    @include flex-center; // Using Mixin
+    gap: $spacer;
+    padding: calculate-padding(2);
+    border-top: 1px solid $secondary-color;
+}

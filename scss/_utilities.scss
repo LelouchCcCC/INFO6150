@@ -1,0 +1,35 @@
+// scss/_utilities.scss
+@import 'config'; // Required for variables and functions
+
+// Placeholder Selectors (5. Placeholder Selectors Requirement)
+%message-box {
+    padding: calculate-padding(1.5); // Using Function
+    margin-bottom: $spacer * 2;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+// Utility Classes
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 calculate-padding(2);
+}
+
+.text-center {
+    text-align: center;
+}
+
+// Extending the Placeholder (Extra Feature: @extend)
+.alert-success {
+    @extend %message-box;
+    background: lighten($primary-color, 40%);
+    color: darken($primary-color, 20%);
+}
+
+.alert-error {
+    @extend %message-box;
+    background: lighten($dark-color, 50%);
+    color: darken($dark-color, 10%);
+}
