@@ -14,6 +14,8 @@ app.use(express.json()); // to be able to access your req.body
 app.use(express.urlencoded({ extended: true })); // to be able to access form data
 app.use(express.static(path.join(__dirname, 'public'))); // to serve/host static files
 
+app.use('/images', express.static(path.join(__dirname, 'images')));
+
 // Connect to MongoDB
 const mongoDB_URI = 'mongodb://localhost:27017/a8'; // access the database
 const { body, validationResult } = require('express-validator');
@@ -214,22 +216,27 @@ app.post('/user/authenticate', async (req, res) => {
     }
 });
 
-// 6. Image Upload: POST /user/uploadImage (Success: 201, Error: 400)
+// 6. Image Upload: POST /user/uploadImage (Success: 201, Error: 400/404/500)
 app.post('/user/uploadImage', (req, res) => {
     upload.single('image')(req, res, async function (err) {
         
         if (err instanceof multer.MulterError) {
             return res.status(400).json({ error: "Upload failed.", details: err.message });
         } else if (err) {
-            if (err.message === 'Invalid file format. Only JPEG, PNG, and GIF are allowed.') {
+            if (err.message.includes('Invalid file format')) {
                 return res.status(400).json({ error: err.message });
             }
-            console.error(err);
+            console.error('Multer/FileFilter Error:', err);
             return res.status(500).json({ error: 'Internal Server Error' });
         }
         
         const { email } = req.body;
         
+        if (!email) {
+            if (req.file) await fs.unlink(req.file.path);
+            return res.status(400).json({ error: "Email is required in the form data." });
+        }
+
         if (!req.file) {
             return res.status(400).json({ error: "Image file is required." });
         }
@@ -237,11 +244,32 @@ app.post('/user/uploadImage', (req, res) => {
         try {
             let user = await User.findOne({ email });
             
+            if (!user) {
+                await fs.unlink(req.file.path);
+                return res.status(404).json({ error: "User not found." });
+            }
+            
+            if (user.imagePath) {
+                await fs.unlink(req.file.path);
+                return res.status(400).json({ error: "Image already exists for this user. Deletion required before re-upload." });
+            }
+
+            const filePath = `/images/${path.basename(req.file.path)}`;
+            user.imagePath = filePath;
+            await user.save();
+
             res.status(201).json({ 
-                message: "Image uploaded successfully.", 
+                message: "Image uploaded successfully and path saved.", 
+                email: user.email,
+                filePath: filePath
             });
 
         } catch (dbErr) {
+            if (req.file) {
+                try { await fs.unlink(req.file.path); } catch (e) { /* ignore */ }
+            }
+            console.error('Database Error during upload:', dbErr);
+            res.status(500).json({ error: 'Internal Server Error' });
         }
     });
 });
