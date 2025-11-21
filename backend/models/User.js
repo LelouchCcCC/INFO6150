@@ -1,3 +1,4 @@
+//backend/models/User.js
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
@@ -23,6 +24,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: false,
         default: null
+    },
+    type: {
+        type: String,
+        required: true,
+        enum: ['admin', 'employee'],
+        default: 'employee'
     }
 });
 

@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import path from 'path';
 import User from './models/User.js';
+import Job from './models/Job.js';
 import multer from 'multer';
 import fs from 'fs/promises';
 import bcrypt from 'bcrypt';
@@ -25,7 +26,7 @@ mongoose.connect(mongoDB_URI)
 // --- 1. CORS  ---
 app.use(cors({
     origin: 'http://localhost:5173', 
-    credentials: true, // 允许发送 cookies/credentials
+    credentials: true,
 }));
 // --- 2. Session---
 app.use(cookieParser());
@@ -92,18 +93,19 @@ app.post('/user/create', [
     body('fullName').matches(/^[a-zA-Z\s]+$/).withMessage('Full Name must contain only alphabetic characters'),
     body('email').isEmail().withMessage('Email must be a valid format'),
     body('password').isLength({ min: 8 }).withMessage('Password must be minimum 8 characters')
-        .matches(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^a-zA-Z0-9\s])/).withMessage('Password must include strong requirements')
+        .matches(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^a-zA-Z0-9\s])/).withMessage('Password must include strong requirements'),
+    body('type').isIn(['admin', 'employee']).withMessage('Type must be admin or employee')
 ], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) { return res.status(400).json({ error: "Validation failed.", details: errors.array() }); }
     try {
-        const user = new User({ fullName: req.body.fullName, email: req.body.email, password: req.body.password });
+        const { fullName, email, password, type } = req.body;
+        const user = new User({ fullName, email, password, type });
         await user.save();
         res.status(201).json({ message: "User created successfully." });
     } catch (err) {
-        if (err.code === 11000) { return res.status(400).json({ error: "Validation failed.", details: [{ msg: "Email already exists" }] }); }
-        console.error(`Error creating user: ${err.message}`, err);
-        res.status(500).json({ error: 'Internal Server Error' });
+        console.error(err);
+        res.status(500).json({ error: "Error creating user" });
     }
 });
 
@@ -147,32 +149,30 @@ app.delete('/user/delete', async (req, res) => {
 // 4. Retrieve All Users: GET /user/getAll
 app.get('/user/getAll', async (req, res) => {
     try {
-        const users = await User.find({}, 'fullName email password'); 
-        const formattedUsers = users.map(user => ({ fullName: user.fullName, email: user.email, password: user.password }));
-        res.status(200).json({ users: formattedUsers });
+        const users = await User.find().select('-password');
+        res.status(200).json({ users });
     } catch (err) {
-        console.error('Error fetching all users:', err);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: "Server error" });
     }
 });
 
 // 5. User Authentication (Login) - POST /user/authenticate
 app.post('/user/authenticate', async (req, res) => {
     const { email, password } = req.body;
-    if (!email || !password) { return res.status(400).json({ error: "Email and password are required for authentication." }); }
     try {
         const user = await User.findOne({ email });
-        if (!user) { return res.status(404).json({ error: "User not found." }); }
+        if (!user) return res.status(404).json({ error: "User not found." });
         const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) { return res.status(401).json({ error: "Invalid credentials." }); }
-        
-        req.session.user = { id: user._id, email: user.email, fullName: user.fullName };
-
-        res.status(200).json({ message: "Authentication successful.", email: user.email, fullName: user.fullName });
-        
+        if (!isMatch) return res.status(401).json({ error: "Invalid credentials." });
+        req.session.user = { id: user._id, email: user.email, type: user.type };
+        res.status(200).json({ 
+            message: "Login successful", 
+            email: user.email, 
+            fullName: user.fullName, 
+            type: user.type 
+        });
     } catch (err) {
-        console.error(`Error during authentication: ${err.message}`, err);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: "Server error" });
     }
 });
 
@@ -240,6 +240,28 @@ app.get('/api/images/getAll', async (req, res) => {
     } catch (err) {
         console.error('Error fetching company images:', err);
         res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+// 9. add job
+app.post('/api/create/job', async (req, res) => {
+    // 可以在这里加个校验：if (req.session.user.type !== 'admin') return 403;
+    try {
+        const newJob = new Job(req.body);
+        await newJob.save();
+        res.status(201).json(newJob);
+    } catch (err) {
+        res.status(500).json({ error: "Error creating job" });
+    }
+});
+
+// 10. get all jobs
+app.get('/api/jobs', async (req, res) => {
+    try {
+        const jobs = await Job.find().sort({ createdAt: -1 });
+        res.status(200).json(jobs);
+    } catch (err) {
+        res.status(500).json({ error: "Error fetching jobs" });
     }
 });
 
