@@ -8,7 +8,8 @@ import EmployeesPage from './pages/Admin/EmployeesPage';
 import AddJobPage from './pages/Admin/AddJobPage';
 import JobsPage from './pages/Employee/JobsPage';
 import Signup from './pages/Signup';
-
+import Contact from './pages/Contact';
+import About from './pages/About';
 const ProtectedRoute = ({ allowedRoles }) => {
   const { user, isAuthenticated } = useSelector((state) => state.auth);
   
@@ -36,6 +37,8 @@ export default function App() {
 
         <Route element={<ProtectedRoute allowedRoles={['employee']} />}>
           <Route path="/jobs" element={<JobsPage />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path='/about' element={<About />} />
           {/* <Route path="/companyshowcase" element={<CompanyShowcase />} /> */}
         </Route>
       </Routes>
