@@ -1,50 +1,44 @@
-// frontend/src/App.jsx
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
-import { useAuth } from "./AuthContext";
-import Navbar from "./components/Navbar/Navbar";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import JobListings from "./pages/JobListings";
-import Contact from "./pages/Contact";
-import CompanyShowcase from "./pages/CompanyShowcase";
-import Login from "./pages/Login";
-import { Container } from "@mui/material";
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import Navbar from './components/Navbar/Navbar';
+import Login from './pages/Login';
+import Home from './pages/Home';
+import EmployeesPage from './pages/Admin/EmployeesPage';
+import AddJobPage from './pages/Admin/AddJobPage';
+import JobsPage from './pages/Employee/JobsPage';
+import Signup from './pages/Signup';
 
-const ProtectedRoute = ({ element }) => {
-  const { isAuthenticated } = useAuth();
-  return isAuthenticated ? element : <Navigate to="/login" replace />;
+const ProtectedRoute = ({ allowedRoles }) => {
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
+  
+  if (!isAuthenticated) return <Navigate to="/login" />;
+  if (allowedRoles && !allowedRoles.includes(user.type)) {
+    return <Navigate to="/" />; 
+  }
+  return <Outlet />;
 };
 
 export default function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Navbar />
-      <Container>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={<Home />} />
+        
+        {/* Admin Routes */}
+        <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
+          <Route path="/admin/employees" element={<EmployeesPage />} />
+          <Route path="/admin/add-job" element={<AddJobPage />} />
+        </Route>
 
-          <Route path="/login" element={<Login />} />
-
-          <Route
-            path="/joblistings"
-            element={<ProtectedRoute element={<JobListings />} />}
-          />
-          <Route
-            path="/companyshowcase"
-            element={<ProtectedRoute element={<CompanyShowcase />} />}
-          />
-
-        </Routes>
-      </Container>
-    </Router>
+        <Route element={<ProtectedRoute allowedRoles={['employee']} />}>
+          <Route path="/jobs" element={<JobsPage />} />
+          {/* <Route path="/companyshowcase" element={<CompanyShowcase />} /> */}
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }

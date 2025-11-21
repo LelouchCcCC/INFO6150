@@ -1,44 +1,48 @@
-// frontend/src/components/Navbar/Navbar.jsx
-import React from "react";
-import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
-import { Link } from "react-router-dom";
-import { useAuth } from "../../AuthContext";
+import React from 'react';
+import { AppBar, Toolbar, Button, Box } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../redux/slices/authSlice';
 
 export default function Navbar() {
-  const { isAuthenticated, logout } = useAuth();
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
+  console.log("Current User in Redux:", user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/login');
+  };
 
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
-            Job Portal
-          </Link>
-        </Typography>
-        <Box>
-          {["Home", "About", "Job Listings", "Company Showcase", "Contact"].map(
-            (text) => (
-              <Button
-                color="inherit"
-                component={Link}
-                to={`/${text.toLowerCase().replace(" ", "")}`}
-                key={text}
-              >
-                {text}
-              </Button>
-            )
-          )}
-
-          {isAuthenticated ? (
-            <Button color="inherit" onClick={logout}>
-              Logout
-            </Button>
-          ) : (
-            <Button color="inherit" component={Link} to="/login">
-              Login
-            </Button>
-          )}
+        <Box sx={{ flexGrow: 1 }}>
+           <Button color="inherit" component={Link} to="/">Job Portal</Button>
         </Box>
+
+        {isAuthenticated ? (
+          <>
+            {user.type === 'admin' ? (
+              <>
+                <Button color="inherit" component={Link} to="/admin/employees">Employees</Button>
+                <Button color="inherit" component={Link} to="/admin/add-job">Add Job</Button>
+              </>
+            ) : (
+              <>
+                <Button color="inherit" component={Link} to="/jobs">Jobs</Button>
+                {/* <Button color="inherit" component={Link} to="/companyshowcase">Companies</Button> */}
+              </>
+            )}
+            <Button color="inherit" onClick={handleLogout}>Logout</Button>
+          </>
+        ) : (
+          <>
+            <Button color="inherit" component={Link} to="/login">Login</Button>
+            <Button color="inherit" component={Link} to="/signup">Sign Up</Button>
+          </>
+        )}
       </Toolbar>
     </AppBar>
   );

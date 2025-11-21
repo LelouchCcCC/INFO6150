@@ -1,77 +1,42 @@
-// frontend/src/pages/Login.jsx
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../AuthContext';
-import { TextField, Button, Typography, Container, Box, Alert } from '@mui/material';
+import { loginUser } from '../redux/slices/authSlice';
+import { Container, TextField, Button, Typography, Alert, CircularProgress } from '@mui/material';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const { login } = useAuth();
+  
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { loading, error } = useSelector((state) => state.auth);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    const result = await login(email, password);
+    const resultAction = await dispatch(loginUser({ email, password }));
     
-    if (result.success) {
-      navigate('/');
-    } else {
-      setError(result.message);
+    if (loginUser.fulfilled.match(resultAction)) {
+      const user = resultAction.payload;
+      if (user.type === 'admin') {
+        navigate('/admin/employees');
+      } else {
+        navigate('/jobs');
+      }
     }
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Typography component="h1" variant="h5">
-          Job Portal Login
-        </Typography>
-        {error && <Alert severity="error" sx={{ mt: 2, width: '100%' }}>{error}</Alert>}
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address (Username)"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Sign In
-          </Button>
-        </Box>
-      </Box>
+    <Container maxWidth="xs" sx={{ mt: 8 }}>
+      <Typography variant="h5">Login</Typography>
+      {error && <Alert severity="error" sx={{ mt: 2 }}>{error}</Alert>}
+      <form onSubmit={handleSubmit}>
+        <TextField label="Email" fullWidth margin="normal" value={email} onChange={(e)=>setEmail(e.target.value)} />
+        <TextField label="Password" type="password" fullWidth margin="normal" value={password} onChange={(e)=>setPassword(e.target.value)} />
+        <Button type="submit" fullWidth variant="contained" sx={{ mt: 3 }} disabled={loading}>
+          {loading ? <CircularProgress size={24} /> : 'Sign In'}
+        </Button>
+      </form>
     </Container>
   );
 }
